@@ -85,8 +85,7 @@
 ###예외의 추상화
 interface의 메서드가 특정 exception을 throws 해야 한다면,
 
-implement 메서드들이 모두 같은 exception을 던져야 한다. implement 메서드들이 상이한 예외를 throws 하는 경우 interface를 사용할 수 없는 것.
-
+implement 메서드들이 모두 같은 exception을 던져야 한다. implement 메서드들이 상이한 예외를 throws 하는 경우 interface를 사용할 수 없는 것.	
 이는 예외에 의한 의존성 강화로 볼 수 있을 것.    
 모든 예외를 런타임 예외로 포장하거나, 의미 있는 예외로 전환(**예외의 추상화**)해야 함.
 
