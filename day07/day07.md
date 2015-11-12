@@ -75,7 +75,7 @@
 	```java
 	catch(SQLException e) {
 		throw DuplicateUserIdException().initCause(e);
-	```
+	```	
 ###애플리케이션 예외
 애플리케이션 자체 로직에 의해 의도적으로 발생시키고, 반드시 catch 해서 조치를 취하도록 요구하는 예외(애플리케이션 로직을 담기 위한 예외)
 
