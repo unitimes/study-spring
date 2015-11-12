@@ -68,14 +68,14 @@
 		- 원래 발생한 예외를 담아 예외 전환
 		- `getCause()`메소드 통해 처음 발생한 예외 참조 가능
 		- 체크 예외를 언체크 예외로 바꾸는 경우에도 사용
-```java
-catch(SQLException e) {
-	throw DuplicateUserIdException(e);
-```
-```java
-catch(SQLException e) {
-	throw DuplicateUserIdException().initCause(e);
-```
+	```java
+	catch(SQLException e) {
+		throw DuplicateUserIdException(e);
+	```
+	```java
+	catch(SQLException e) {
+		throw DuplicateUserIdException().initCause(e);
+	```
 ###애플리케이션 예외
 애플리케이션 자체 로직에 의해 의도적으로 발생시키고, 반드시 catch 해서 조치를 취하도록 요구하는 예외(애플리케이션 로직을 담기 위한 예외)
 
