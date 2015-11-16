@@ -13,7 +13,7 @@
 테스트 코드를 잘 작성해 놓으면 리팩토링이 쉬워진다.	
 ###Mock
 ####Mockito 프레임워크
-특정 호출에 특적 리턴
+특정 호출에 특정 리턴
 ```java
 when(mockUserDao.getAll()).thenReturn(this.users);
 ```
