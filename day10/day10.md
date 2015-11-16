@@ -34,6 +34,7 @@ List<SimpleMailMessage> mailMessages = mailMessageArg.getAllValues();
 ###용어
 - 프록시( proxy): 대리인. 실제 오브젝트인 것처럼 위장하여, 클라이언트의 요청을 대신 받음
 - 타깃(target)/실체(real subject): 프록시를 통해 최종적으로 요청을 위임받아 처리하는 실제 오브젝트
+
 ### 데코레이터 패턴
 타깃에 부가적인 기능을 런타임 시 다이내믹하게 부여해주기 위해 프록시를 사용하는 패턴	
 부가적인 기능에 따라 여러개의 프록시 사용 가능	
