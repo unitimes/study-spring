@@ -45,6 +45,7 @@ List<SimpleMailMessage> mailMessages = mailMessageArg.getAllValues();
 InputStream is = new BufferedInputStream(new FileInputStream("a.txt"));
 ```
 - InputStream 인터페이스 구현한 타깃인 FileInputStream에 버퍼 읽기 기능을 제공하는 데코레이터 패턴
+
 ###프록시 패턴
 프록시라는 용어와 구분 필요	
 프록시를 사용하는 방법 중에서 타깃에 대한 접근 방법을 제어하려는 목적을 가진 패턴	
@@ -53,10 +54,12 @@ InputStream is = new BufferedInputStream(new FileInputStream("a.txt"));
 - 당장 필요하지 않지만 타깃 오브젝트에 대한 레퍼런스가 미리 필요한 경우
 - 원격 오브젝트를 이용하는 경우
 - 본래 수정 가능한 오브젝트에 대해, 특정 레이어에서는 읽기전용으로 동작하게 강제해야 하는 경우
+
 ### 다니내믹 프록시
 ####프록시 구성의 단점
 - 타깃의 인터페이스를 구현하고 위임하는 코드 작성이 번거로움
 - 부가기능 코드의 중복
+
 ####리플렉션
 자바의 코드 자체를 추상화해서 접근하도록 만든 것
 ```java
