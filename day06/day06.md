@@ -12,6 +12,7 @@ getClass().getClassLoader().getResource("파일이름")
 ```
 ##Generics in Java
 - If Foo is a subtype of Bar, and G is some generic type declaration, it is not the case that `G<Foo>` is a subtype of `G<Bar>`.
+
 ##Gradle 설정 파일
 ### Dependency
 ```
@@ -25,5 +26,3 @@ compile 'org.hibernate:hibernate-core:3.6.7.Final'
 }
 ```
 - 위 둘은 동일한 dependency 설정
-
-> Written with [StackEdit](https://stackedit.io/).
