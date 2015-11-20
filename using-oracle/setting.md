@@ -40,7 +40,7 @@ public class OracleConfiguration {
     }
 }
 ```
-**@ConfigurationProperties("prefix")**
+**@ConfigurationProperties("prefix")**  
 properties 파일에서 prefix._{property name}_을 key로 하여 value를 매핑
 ###application.properties
 ```
