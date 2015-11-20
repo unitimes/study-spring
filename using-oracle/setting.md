@@ -40,7 +40,7 @@ public class OracleConfiguration {
     }
 }
 ```
-####@ConfigurationProperties("prefix")
+**@ConfigurationProperties("prefix")**
 properties 파일에서 prefix._{property name}_을 key로 하여 value를 매핑
 ###application.properties
 ```
@@ -49,7 +49,7 @@ oracle.username={user name}
 oracle.password={password}
 oracle.url=jdbc:oracle:thin:@//{host:port}/{database}
 ```
-####Hibernate로 JPA구현 하는 데 Oracle 사용
+**Hibernate로 JPA구현 하는 데 Oracle 사용**
 ```
 //For hibernate
 spring.jpa.database-platform=org.hibernate.dialect.Oracle10gDialect
