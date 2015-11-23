@@ -3,6 +3,8 @@
 ###@Component
 Spring의 generic component	
 @Repository, @Service, @Controller는 @Component의 특별 버전	
+>|Annotation|Target bean|
+>|----------|-----------|
 >|@Repository|Persistence|
 >|@Service|Service|
 >|@Controller|Presentation|
