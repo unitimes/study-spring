@@ -43,7 +43,7 @@ Bean의 scope를 지정
 
 scope이 좁은 bean과 의존성을 갖게 하려면 proxy가 필요하며, proxyMode를 설정 해 proxy 생성 방법을 특정 할 수 있다. 기본 값은 ScopedProxyMode.NO이기 때문에 적절한 모드로 설정해 줘야 한다.
 >**proxyMode**	
->_ScopedProxyMode.TARGET_CLASS_	
+>_ScopedProxyMode.TARGET_CLASS_		
 >CGLIB을 이용해 proxy 생성, CGLIB 필요, Spring 3.2 이후부터 spring-core에 포함	
 >_ScopedProxyMode.INTERFACES_	
 >JDK를 이용해 proxy 생성, interface 필요
