@@ -15,7 +15,7 @@
 ####개방폐쇄 원칙
 다아나믹 프록시 생성 시, 메소드 선정 알고리즘(포인트 컷)과 부가기능(어드바이스)을 분리	
 팩토리 빈에 포인트컷 등록 시 어드바이스를 한데 묶은 어드바이저로 등록
-####interceptorNames
+####interceptorNames 프러퍼티
 advice와 advisor를 list로 한번에 등록
 #AOP
 OOP를 돕는 기술	
@@ -27,16 +27,18 @@ OOP를 돕는 기술
 AspectJ의 경우 바이트코드를 직정 조작하는 방식으르 AOP를 적용한다.
 ```
 ####인터페이스와 프록시 AOP
->프록시 AOP가 반드시 interface를 필요로 하는 것은 아니다. Interface가 없는 class가 타깃이어도 프롯시 AOP는 정상적으로 동작
+>프록시 AOP가 반드시 interface를 필요로 하는 것은 아니다. Interface가 없는 class가 타깃이어도 프록시 AOP는 정상적으로 동작
 >
 >다만 interface가 있을 때는 JDK proxy가 없을 때는 **CGLIB proxy**가 적용
 
 ##자동 프록시 생성
 **ProxyFactoryBean을 사용할 때는**	
-타깃이 다른 프록시를 만들 때마다 target 프로퍼티를 수정해야
+타깃이 다른, 프록시를 만들 때마다 target 프로퍼티를 수정해야
+
+빈 후처리기인 자동 프록시 생성기를 이용해 프록시를 자동으로 생성
 ###빈 후처리기
 빈 오브젝트 생성 후 빈을 가공하는 방법을 제공	
-####DefaultAdvisorAutoProxyCreator
+####DefaultAdvisorAutoProxyCreator(자동 프록시 생성기)
 Pointcut에 해당하는 모든 빈에 프록시를 자동으로 생성하고 컨테이너에 등록해주는 빈 후처리기
 
 타깃 빈에 의존하는 다른 빈들은 프록시 오브젝트에 의존하도록 자동으로 바꿔 줌
@@ -85,6 +87,7 @@ execution([접근제한자] 리턴타입 [패키지.클래스타입.]메서드�
 ###AOP 네임스페이스
 xml환경설정에서는 AOP를 위한 빈들에 특화된(기능이 확장된) 네임스페이스를 제공
 >`<aop:config>, <aop:pointcut>, <aop:advisor>` 세 가지 태그를 정의하면 어드바이스를 제외한 3가지 빈 자동 등록
+
 ##트랜잭션 속성
 ###트랜잭션 정의
 ####트랜잭션 전파
@@ -122,6 +125,8 @@ PlatformTransactionManager와 Properties 타입의 transactionAttributes 두 개
 - 제한시간은 초 단위
 - -예외는 체크 예외 중에서 커밋 대상에서 제외(롤백 대상에 추가)
 - +예외는 런타임 예외 중 커밋 대상에 예외 추가
+- 읽기전용과 제한시간 등은 처음 트랜잭션이 시작할 때만 적용
+	- 다른 트랜잭션에 참여(REQUIRED)하는 경우 본재 열려있던 트랜잭션 속성 적용
 
 ###tx네임스페이스
 xml환경설정 시 tx스키마를 사용하면 트랜잭션 속성을 개별 어트리뷰트를 통해 지정가능하여 환경설정 파일 가독성이 증가
@@ -132,6 +137,7 @@ xml환경설정 시 tx스키마를 사용하면 트랜잭션 속성을 개별 �
 - 메소드, 파라미너, 예외 정의하지 않는 것이 좋다
 - 응집도가 높다면 트랜잭션 프록시의 타깃 클래스의 메소드는 모두 트랜잭션 적용 후보일 것
 - 가능하면 클래스보다는 인터페이스 타입을 기준으로 적용
+
 ####최소한의 트랜잭션 어드바이스와 속성 정의
 - 실제 하나의 애플리케이션에 사용할 트랜잭션 속성의 종류는 다양하지 않음
 - 관리의 편이를 위해 메소드 명명 규칙을 만들 것
@@ -140,7 +146,8 @@ xml환경설정 시 tx스키마를 사용하면 트랜잭션 속성을 개별 �
 ####같은 타깃 오브젝트 내의 메소드 호출에는 프록시 방식 AOP 적용 불가
 
 ##어노테이션 트랜잭션
-어노테이션을 사용하면 타깃에 직접 트랜잭션 속성정보 지정 가능
+어노테이션을 사용하면 타깃에 직접 트랜잭션 속성정보 지정 가능	
+환경설정 파일에 `<tx:annotation-driven />`추가 필요
 ###@Transactional
 트랜잭션 속성정보로 사용되나, TransactionAttributeSourcePointcut에 의해 자동으로 포인트컷으로 등록	
 클래스뿐 아니라 메서드마다 설정 가능
@@ -152,7 +159,43 @@ xml환경설정 시 tx스키마를 사용하면 트랜잭션 속성을 개별 �
 ```
 메소드 보단 클래스, 구현체 보단 인터페이스에 던저 적용하는 것이 바람직
 ```
- 
+
+#트랜잭션 동기화와 테스트
+PlatformTransactionManager 인터페이스 구현한 트랜잭션 매니저를 통해 테스트 코드에서 트랜잭션 제어 가능	
+컨테이너에 등록된 트랜잭션 매니저를 @Autowired 등의 방법으로 가져와 직접 제어하는 방식
+```java
+@Autowired
+PlatformTransactionManager txManager;
+@Test
+public void transction() {
+	DefaultTransactionDefinition txDefinition = new DefaultTransactionDefinition();
+	TransactionStatus txStatus = transactionManager.getTransaction(txDefinition);
+	// 트랜잭션 시작 - transaction definition의 속성에 따라 기존 트랜잭션에 참여할 수도
+	...
+	transactionManager.commit(txStatus);
+}
+```
+##롤백 테스트
+테스트 코드에서 트랜잭션을 제어해서, 테스트 후 DB를 테스트 시작전으로 돌리는 것	
+`transactionManager.rollback(txStatus);`
+#테스트를 위한 트랜잭션 어노테이션
+##@Transactional
+동일하게 사용 가능		
+다만, 테스트용 트랜잭션은 테스트가 끝나면 **자동으로 롤백**
+##@Rollback
+테스트에서 @Transactional 사용 시 롤백을 원하지 않으면 @Rollback(false) 사용	
+기본값은 true	
+메소드 레벨에만 적용 가능
+##@TransactionConfiguration
+메소드 단위 아닌 클래스 단위로 테스트에 사용할 PlatformTransactionManager 지정 및 defaultRallback 설정에 사용
+##@NotTransactional
+클래스 레벨의 @Transactional 설정 무시	
+테스트 메소드 안에서 호출하는 메소드에는 영향 주지 않음	
+
+사용 권장 되지 않음
+##@Transactional(propagation=Propagation.NEVER)
+@NotTransactional과 동일한 효과	
+
 #용어
 ####어드바이스(advice)
 타깃 오브젝트에 적용하는 부가기능을 담은 오브젝트	
