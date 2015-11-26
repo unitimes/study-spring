@@ -185,7 +185,7 @@ public void transction() {
 ##@Rollback
 테스트에서 @Transactional 사용 시 롤백을 원하지 않으면 @Rollback(false) 사용	
 기본값은 true	
-메소드 레벨에만 적용 가능
+메소드, 타입 레벨 적용 가능
 ##@TransactionConfiguration
 메소드 단위 아닌 클래스 단위로 테스트에 사용할 PlatformTransactionManager 지정 및 defaultRallback 설정에 사용
 ##@NotTransactional
