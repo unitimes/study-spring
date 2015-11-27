@@ -19,7 +19,7 @@ public class AppConfig {
 	
 }
 ```
-@Configuration 이 붙은 class의 @Bean 메소드가 아닌 경우(lite mode) 다른 @Bean 메소드 호출 불가	
+@Configuration 이 붙은 class의 @Bean 메소드가 아닌 경우(lite mode) 다른 @Bean 메소드 호출 불가    
 @Bean 메소드가 여러번 호출 되도 같은 instance 반환
 >CGLIB이 @Configuration class의 subclass를 만들고 parent method를 호출하기 전에 caching한 beans를 확인
 
