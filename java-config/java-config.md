@@ -28,7 +28,7 @@ public PlatformTransactionManager transactionManager() {
 **Java configuration** 에서는		
 Configuration class에 @EnableTransactionManagement를 추가	
 
-**Spring boot** 에서는
+**Spring boot** 에서는    
 @Transactional이 달린 메소드 혹은 클래스가 classpath에 존재하면 필요한 beans를 알아서 생성
 ####@SpringBootApplication annotation
 @Configuration, @EnableAutoConfiguration, @ComponentScan 을 단 효과
