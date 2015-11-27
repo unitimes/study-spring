@@ -33,7 +33,7 @@ Configuration class에 @EnableTransactionManagement를 추가
 ####@SpringBootApplication annotation
 @Configuration, @EnableAutoConfiguration, @ComponentScan 을 단 효과
 ####@EnableAutoConfiguration
-classpath의 beans을 보고 필요한 beans를 설정 및 생성성
+classpath의 beans을 보고 필요한 beans를 설정 및 생성
 
 ##Profiling configuration classes
 테스트용 설정 파일과 운용을 위한 설정 파일을 분리해서 운영할 때	
