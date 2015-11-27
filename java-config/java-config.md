@@ -159,7 +159,7 @@ public interface NameDefiner {
 	String getName();
 }
 ```
-**클라이언트의 configuration class - 별도의 NameDefiner 구현체 구현**
+**클라이언트의 configuration class - 별도의 NameDefiner 구현체 구현**    
 NameDefiner 구현체는 클라이언트에 있던 라이브러리에 같이 제공되든 상관없음
 ```java
 @Configuration
@@ -171,7 +171,7 @@ public class ClientConfig {
 	}
 }
 ```
-**클라이언트의 configuration class - NameDefiner 직접 구현**
+**클라이언트의 configuration class - NameDefiner 직접 구현**    
 @Configuration이 @Component를 메타 어노테이이션으로 가지고 있어서 가능
 ```java
 @Configuration
