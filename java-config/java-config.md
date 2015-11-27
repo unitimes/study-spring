@@ -45,7 +45,7 @@ value값을 지정하면, 해당 value를 activation 하기 전까지 그냥 통
 value에 array를 넣으면`@Profile({"p1", "p2"})` p1, p2 둘 중 하나 이상이 active 대상이 되면 처리	
 !사용 가능 `@Profile({"p1", "!p2"})`
 ####Activation 방법
-**Test인 경우**
+**Test인 경우**    
 @ActiveProfiles사용
 
 **직접 Context를 생성 할 경우**
